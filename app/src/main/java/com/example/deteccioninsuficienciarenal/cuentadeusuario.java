@@ -17,4 +17,9 @@ public class cuentadeusuario extends AppCompatActivity {
         Intent openLogin = new Intent(cuentadeusuario.this, login.class);
         startActivity(openLogin);
     }
+
+    public void registroView(View view){
+        Intent openLogin = new Intent(cuentadeusuario.this, registro.class);
+        startActivity(openLogin);
+    }
 }

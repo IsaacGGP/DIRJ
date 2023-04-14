@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginStart="16dp"
-            android:text="Iniciar sesion"
+            android:text="Iniciar sesión"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/include4"
-        layout="@layout/toolbarregistrarse" />
+        layout="@layout/toolbariniciarsesion" />
 
     <LinearLayout
         android:id="@+id/linearlayout"
@@ -22,40 +22,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include4">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:layout_marginStart="21dp"
             android:layout_marginTop="46dp"
-            android:layout_marginEnd="20dp"
-            android:hint="Usuario">
+            android:id="@+id/Correo"
+            android:hint="Correo electrónico"
+            android:padding="8dp"
+            android:paddingBottom="5dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            style="@style/Campo_texto_style"
+            />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/usuario"
-                android:layout_width="306dp"
-                android:layout_height="47dp"
-                android:background="@drawable/input"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="Contraseña">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/contraseña"
-                android:layout_width="306dp"
-                android:layout_height="47dp"
-                android:background="@drawable/input"
-                android:inputType="textPassword"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="31dp"
+            android:id="@+id/password"
+            android:hint="Contraseña"
+            android:padding="8dp"
+            android:inputType="textPassword"
+            android:paddingBottom="2dp"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            style="@style/Campo_texto_style"/>
 
         <Button
             android:id="@+id/loginButton"

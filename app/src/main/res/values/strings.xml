@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Deteccion Insuficiencia renal</string>
+    <string-array name="lista_genero">
+        <item>M</item>
+        <item>F</item>
+    </string-array>
 </resources>
