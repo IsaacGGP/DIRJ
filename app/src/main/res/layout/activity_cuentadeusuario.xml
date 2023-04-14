@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cuentadeusuario">
+
+    <include
+        android:id="@+id/include5"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="254dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/redondeado"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="17dp"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/baseline_person_add_alt_1_24" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="0.85"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="Registrarse"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="254dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/redondeado"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include5">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="17dp"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/baseline_login_24" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="0.85"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="Inicar Sesión"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
