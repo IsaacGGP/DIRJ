@@ -24,7 +24,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="68dp"
-            android:background="@drawable/redondeado">
+            android:background="@drawable/redondeado"
+            android:onClick="inicioView">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -54,7 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/redondeado">
+            android:background="@drawable/redondeado"
+            android:onClick="calcularRiesgoView">
 
             <TextView
                 android:id="@+id/textView2"
@@ -85,7 +87,8 @@
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/redondeado">
+            android:background="@drawable/redondeado"
+            android:onClick="consultarResultadosView">
 
             <TextView
                 android:id="@+id/textView3"
@@ -115,7 +118,8 @@
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/redondeado">
+            android:background="@drawable/redondeado"
+            android:onClick="cuentaUsuarioView">
 
             <ImageView
                 android:id="@+id/imageView4"

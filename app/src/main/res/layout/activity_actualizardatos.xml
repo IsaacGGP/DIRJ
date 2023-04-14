@@ -6,18 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".actualizardatos">
 
+
     <include
         android:id="@+id/include5"
-        layout="@layout/toolbar" />
-
+        layout="@layout/toolbaractualizardatos"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <LinearLayout
         android:id="@+id/LinearActulizarDat"
-        android:background="@drawable/redondeado"
-        android:layout_width="378dp"
-        android:layout_height="421dp"
-
+        android:layout_width="377dp"
+        android:layout_height="429dp"
         android:layout_marginTop="36dp"
+
+        android:background="@drawable/redondeado"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +34,7 @@
             android:layout_marginStart="21dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="Usuario">
+            android:hint="Nombre (s)">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/usuario"
@@ -49,7 +51,7 @@
             android:layout_marginStart="21dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
-            android:hint="Apellidos">
+            android:hint="Apellido (s)">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/apellidos"
@@ -90,13 +92,12 @@
                 android:layout_width="306dp"
                 android:layout_height="47dp"
                 android:background="@drawable/input"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/txtFecha"
-            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -104,7 +105,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:ellipsize="end"
-            android:text="Fecha de nacimiento:" />
+            android:text="Fecha de nacimiento:"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -119,43 +121,43 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="65dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:hint="Dia">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dia"
                     android:layout_width="60dp"
                     android:layout_height="40dp"
-                    android:inputType="number"
                     android:background="@drawable/input"
-                    android:id="@+id/dia"/>
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="75dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:hint="Mes">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mes"
                     android:layout_width="70dp"
                     android:layout_height="40dp"
-                    android:inputType="number"
                     android:background="@drawable/input"
-                    android:id="@+id/mes"/>
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="75dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:hint="Año">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/año"
                     android:layout_width="70dp"
                     android:layout_height="40dp"
-                    android:inputType="number"
                     android:background="@drawable/input"
-                    android:id="@+id/año"/>
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

@@ -17,17 +17,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/text"
-            android:paddingLeft="110dp"
-            android:src="@drawable/baseline_home_24" />
+            android:layout_toStartOf="@+id/text"
+
+            android:src="@drawable/baseline_person_add_alt_1_24white" />
 
         <TextView
-            android:id="@id/text"
+            android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginStart="16dp"
-            android:text="Bienvenido"
+            android:text="Registrarse"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -36,7 +36,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:onClick="menu"
             android:src="@mipmap/ic_launcher_foreground" />
     </RelativeLayout>
 

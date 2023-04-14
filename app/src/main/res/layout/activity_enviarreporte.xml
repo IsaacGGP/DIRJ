@@ -8,12 +8,12 @@
 
     <include
         android:id="@+id/include3"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbarenviarreportes" />
 
     <LinearLayout
         android:id="@+id/LinearDescription"
-        android:layout_width="348dp"
-        android:layout_height="359dp"
+        android:layout_width="355dp"
+        android:layout_height="334dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/redondeado"
         android:gravity="center_horizontal"
@@ -115,7 +115,6 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="10dp"
                 android:singleLine="true"
-                android:text="Diabetes"
                 android:textSize="20sp" />
 
             <TextView
@@ -127,7 +126,6 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="10dp"
                 android:singleLine="true"
-                android:text="Presión alta"
                 android:textSize="20sp" />
 
             <TextView
@@ -139,7 +137,6 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="10dp"
                 android:singleLine="true"
-                android:text="Enfermedad renal"
                 android:textSize="20sp" />
         </LinearLayout>
 

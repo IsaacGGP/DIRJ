@@ -49,19 +49,7 @@
                 android:textSize="20sp"
                 android:layout_marginLeft="5dp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Kg">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="133dp"
-                    android:layout_height="47dp"
-                    android:inputType="number"
-                    android:background="@drawable/input"
-                    android:id="@+id/peso"/>
-            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
         <LinearLayout
@@ -79,19 +67,7 @@
                 android:textSize="20sp"
                 android:layout_marginLeft="5dp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="mg/dL">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="133dp"
-                    android:layout_height="47dp"
-                    android:inputType="number"
-                    android:background="@drawable/input"
-                    android:id="@+id/creatinina"/>
-            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
