@@ -11,8 +11,8 @@
         layout="@layout/toolbarregistrarse" />
 
     <LinearLayout
-        android:layout_width="387dp"
-        android:layout_height="521dp"
+        android:layout_width="386dp"
+        android:layout_height="572dp"
         android:layout_marginTop="45dp"
         android:background="@drawable/redondeado"
         android:orientation="vertical"
@@ -74,6 +74,23 @@
 
         <EditText
             android:id="@+id/password"
+            style="@style/Campo_texto_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="2dp"
+            android:singleLine="true"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/password2"
             style="@style/Campo_texto_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -176,7 +193,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:ellipsize="end"
-                android:text="Genero:"
+                android:text="Sexo:"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -187,17 +204,16 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                app:endIconTint="@color/black"
-                >
+                app:endIconTint="@color/black">
 
                 <AutoCompleteTextView
-                    android:id="@+id/autoCompleteTextView"
+                    android:id="@+id/sexo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:layout_marginTop="2dp"
-                    android:inputType="none"
+                    android:layout_weight="2"
                     android:background="@drawable/rectangulo_bg_white"
+                    android:inputType="none"
                     android:text="M/F" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -205,7 +221,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnEnviar"
+            android:id="@+id/btnRegistrar"
 
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -216,6 +232,7 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="#6b0b11"
             android:gravity="center"
+            android:onClick="registrar"
             android:text="Registrarse" />
 
     </LinearLayout>

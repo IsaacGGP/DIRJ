@@ -49,6 +49,22 @@
                 android:textSize="20sp"
                 android:layout_marginLeft="5dp"/>
 
+            <EditText
+                android:id="@+id/peso"
+                style="@style/Campo_texto_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="20dp"
+                android:hint="Kg"
+                android:padding="8dp"
+                android:paddingStart="8dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black" />
+
 
 
         </LinearLayout>
@@ -66,6 +82,22 @@
                 android:text="Nivel creatinina"
                 android:textSize="20sp"
                 android:layout_marginLeft="5dp"/>
+
+            <EditText
+                android:id="@+id/creatinina"
+                style="@style/Campo_texto_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="20dp"
+                android:hint="mg/dL"
+                android:padding="8dp"
+                android:paddingStart="8dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black" />
 
 
 

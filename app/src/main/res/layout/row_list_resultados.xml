@@ -47,7 +47,7 @@
                 android:backgroundTint="#6B0B11"/>
 
             <Button
-                android:id="@+id/btnEnviar"
+                android:id="@+id/btnRegistrar"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="Enviar"

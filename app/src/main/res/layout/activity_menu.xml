@@ -146,10 +146,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cerrarSesion"
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/redondeado">
+            android:background="@drawable/redondeado"
+            android:onClick="cerrarSesion">
 
             <ImageView
                 android:id="@+id/imageView7"
