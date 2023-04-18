@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/backgroudToolbar">
+    android:background="@color/backgroudToolbar"
+    android:onClick="menu">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:onClick="menu"
             android:src="@mipmap/ic_launcher_foreground" />
     </RelativeLayout>
 

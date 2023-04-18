@@ -24,4 +24,9 @@ public class cuentadeusuario extends AppCompatActivity {
         Intent openLogin = new Intent(cuentadeusuario.this, registro.class);
         startActivity(openLogin);
     }
+
+    public void menu(View view){
+        Intent openMenu = new Intent(cuentadeusuario.this, menu.class);
+        startActivity(openMenu);
+    }
 }

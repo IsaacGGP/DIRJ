@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/text"
             android:paddingLeft="110dp"
-            android:src="@drawable/baseline_menu_24" />
+            android:src="@drawable/baseline_dashboard_24" />
 
         <TextView
             android:id="@id/text"

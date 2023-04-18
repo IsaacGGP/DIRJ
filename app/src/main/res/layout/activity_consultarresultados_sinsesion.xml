@@ -8,14 +8,14 @@
 
     <include
         android:id="@+id/include4"
-        layout="@layout/toolbarconsultarresultados" />
+        layout="@layout/toolbarconsultarresultadossinsesion" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="350dp"
         android:layout_height="110dp"
         android:layout_marginTop="70dp"
-        android:background="@drawable/redondeado"
+        android:background="@drawable/texto"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -117,6 +117,11 @@ public class registro extends AppCompatActivity {
 
     }
 
+    public void menu(View view){
+        Intent openMenu = new Intent(registro.this, menu.class);
+        startActivity(openMenu);
+    }
+
 
 
 }

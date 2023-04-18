@@ -36,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:onClick="menu"
             android:src="@mipmap/ic_launcher_foreground" />
     </RelativeLayout>
 

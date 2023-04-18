@@ -20,4 +20,9 @@ public class consultarresultados_sinsesion extends AppCompatActivity {
         Intent openLogin = new Intent(consultarresultados_sinsesion.this, login.class);
         startActivity(openLogin);
     }
+
+    public void menu(View view){
+        Intent openMenu = new Intent(consultarresultados_sinsesion.this, menu.class);
+        startActivity(openMenu);
+    }
 }
