@@ -6,14 +6,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class dataBase extends SQLiteOpenHelper {
+public class DataBaseSQLite extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NOMBRE = "DIRDB";
     public static final String TABLE_USERS = "users";
     public static final String TABLE_RISK = "risk";
 
-    public dataBase(@Nullable Context context) {
+    public DataBaseSQLite(@Nullable Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
     }
 

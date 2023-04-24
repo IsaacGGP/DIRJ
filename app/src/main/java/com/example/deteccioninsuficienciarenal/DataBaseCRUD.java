@@ -8,9 +8,9 @@ import androidx.annotation.Nullable;
 
 
 
-public class db extends dataBase{
+public class DataBaseCRUD extends DataBaseSQLite {
     Context context;
-    public db(@Nullable Context context) {
+    public DataBaseCRUD(@Nullable Context context) {
         super(context);
         this.context = context;
     }
@@ -18,7 +18,7 @@ public class db extends dataBase{
     public long insetarUser(String username, String lastname, String email, String password, String created_at, String birth, int gender){
         long id = 0;
         try {
-            dataBase dataBase = new dataBase(context);
+            DataBaseSQLite dataBase = new DataBaseSQLite(context);
             SQLiteDatabase db = dataBase.getWritableDatabase();
 
             ContentValues values = new ContentValues();
@@ -41,7 +41,7 @@ public class db extends dataBase{
     public long insertarRisk(int idresult, int porcent_risk, int diabetes, int blood_preasure, int heart_failure, int liver_disease, int kidney_disease, int cancer, int created_at, int weight, int creatinine_level, int obstruction_blood_vesseles, int urinary_sediment_abnormalities){
         long id = 0;
         try {
-            dataBase dataBase = new dataBase(context);
+            DataBaseSQLite dataBase = new DataBaseSQLite(context);
             SQLiteDatabase db = dataBase.getWritableDatabase();
 
             ContentValues values = new ContentValues();
@@ -67,17 +67,17 @@ public class db extends dataBase{
         return id;
     }
 
-    public user iniciarSesionUser(String email, String password){
+    public Usuario iniciarSesionUser(String email, String password){
         int id = 0;
-        dataBase dataBase = new dataBase(context);
+        DataBaseSQLite dataBase = new DataBaseSQLite(context);
         SQLiteDatabase db = dataBase.getWritableDatabase();
 
-        user usuario = null;
+        Usuario usuario = null;
         Cursor cursorUser;
         cursorUser = db.rawQuery("SELECT * FROM users WHERE email = '" + email + "' AND password = '" + password + "' LIMIT 1", null);
 
         if (cursorUser.moveToFirst()){
-            usuario = new user();
+            usuario = new Usuario();
             usuario.setIduser(cursorUser.getInt(0));
             usuario.setUsername(cursorUser.getString(1));
             usuario.setLastname(cursorUser.getString(2));

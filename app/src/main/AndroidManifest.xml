@@ -12,34 +12,34 @@
         android:theme="@style/Theme.DeteccionInsuficienciaRenal"
         tools:targetApi="31">
         <activity
-            android:name=".consultarresultados_sinsesion"
+            android:name=".ConsultarResultadosSinSesion"
             android:exported="false" />
         <activity
-            android:name=".registro"
+            android:name=".RegistrarUsuarios"
             android:exported="false" />
         <activity
-            android:name=".cuentadeusuario"
+            android:name=".CuentaUsuario"
             android:exported="false" />
         <activity
-            android:name=".actualizardatos"
+            android:name=".ActualizarDatos"
             android:exported="false" />
         <activity
-            android:name=".login"
+            android:name=".IniciarSesion"
             android:exported="false" />
         <activity
-            android:name=".enviarreporte"
+            android:name=".EnviarReporte"
             android:exported="false" />
         <activity
-            android:name=".consultarresultados"
+            android:name=".ConsultarResultados"
             android:exported="false" />
         <activity
-            android:name=".calculadora"
+            android:name=".CalculadoraRiesgo"
             android:exported="false" />
         <activity
-            android:name=".menu"
+            android:name=".Menu"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Bienvenida"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,22 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class consultarresultados_sinsesion extends AppCompatActivity {
+public class CalculadoraRiesgo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consultarresultados_sinsesion);
+        setContentView(R.layout.activity_calculadora);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
-
-    public void loginView(View view){
-        Intent openLogin = new Intent(consultarresultados_sinsesion.this, login.class);
-        startActivity(openLogin);
-    }
-
     public void menu(View view){
-        Intent openMenu = new Intent(consultarresultados_sinsesion.this, menu.class);
+        Intent openMenu = new Intent(CalculadoraRiesgo.this, Menu.class);
         startActivity(openMenu);
     }
 }

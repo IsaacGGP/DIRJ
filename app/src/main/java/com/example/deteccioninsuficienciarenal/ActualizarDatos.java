@@ -7,16 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class consultarresultados extends AppCompatActivity {
+public class ActualizarDatos extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consultarresultados);
+        setContentView(R.layout.activity_actualizardatos);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
     public void menu(View view){
-        Intent openMenu = new Intent(consultarresultados.this, menu.class);
+        Intent openMenu = new Intent(ActualizarDatos.this, Menu.class);
         startActivity(openMenu);
     }
 }

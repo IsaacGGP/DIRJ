@@ -1,6 +1,6 @@
 package com.example.deteccioninsuficienciarenal;
 
-public class user {
+public class Usuario {
     private int iduser;
     private String username;
     private String lastname;

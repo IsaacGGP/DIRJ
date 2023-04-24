@@ -1,5 +1,5 @@
 package com.example.deteccioninsuficienciarenal;
 
-public class risks {
+public class Riesgo {
 
 }
