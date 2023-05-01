@@ -37,6 +37,7 @@
             android:paddingTop="5dp"
             android:singleLine="true"
             android:textColor="@color/black"
+            android:inputType="textEmailAddress"
             style="@style/Campo_texto_style"
             />
 

@@ -2,6 +2,7 @@ package com.example.deteccioninsuficienciarenal;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.Nullable;
@@ -75,6 +76,31 @@ public class DataBaseCRUD extends DataBaseSQLite {
         Usuario usuario = null;
         Cursor cursorUser;
         cursorUser = db.rawQuery("SELECT * FROM users WHERE email = '" + email + "' AND password = '" + password + "' LIMIT 1", null);
+
+        if (cursorUser.moveToFirst()){
+            usuario = new Usuario();
+            usuario.setIduser(cursorUser.getInt(0));
+            usuario.setUsername(cursorUser.getString(1));
+            usuario.setLastname(cursorUser.getString(2));
+            usuario.setEmail(cursorUser.getString(3));
+            usuario.setPassword(cursorUser.getString(4));
+            usuario.setCreated_at(cursorUser.getString(5));
+            usuario.setBirth(cursorUser.getString(6));
+            usuario.setGender(cursorUser.getInt(7));
+        }
+
+        cursorUser.close();
+
+        return usuario;
+    }
+
+    public Usuario buscarUser(int id){
+        DataBaseSQLite dataBase = new DataBaseSQLite(context);
+        SQLiteDatabase db = dataBase.getWritableDatabase();
+
+        Usuario usuario = null;
+        Cursor cursorUser;
+        cursorUser = db.rawQuery("SELECT * FROM users WHERE iduser = " + id +  " LIMIT 1", null);
 
         if (cursorUser.moveToFirst()){
             usuario = new Usuario();

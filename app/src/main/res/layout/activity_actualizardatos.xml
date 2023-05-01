@@ -177,6 +177,7 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="#6b0b11"
             android:gravity="center"
+            android:onClick="registrarUsuario"
             android:text="Actualizar" />
     </LinearLayout>
 
@@ -189,6 +190,7 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/redondeado"
         android:gravity="center"
+        android:onClick="cerrarSesion"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"

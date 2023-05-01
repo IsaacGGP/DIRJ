@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -43,6 +44,8 @@ public class RegistrarUsuarios extends AppCompatActivity {
         txtmes = findViewById(R.id.txtMes);
         txtaño = findViewById(R.id.txtAño);
         registrarse = findViewById(R.id.btnRegistrar);
+
+        splista.setInputType(InputType.TYPE_NULL);
     }
 
     public void registrar(View view){
@@ -111,15 +114,11 @@ public class RegistrarUsuarios extends AppCompatActivity {
             }
         }else {
         Toast.makeText(this, "Error al registrar usuario", Toast.LENGTH_SHORT).show();
-    }
-
+        }
     }
 
     public void menu(View view){
         Intent openMenu = new Intent(RegistrarUsuarios.this, Menu.class);
         startActivity(openMenu);
     }
-
-
-
 }

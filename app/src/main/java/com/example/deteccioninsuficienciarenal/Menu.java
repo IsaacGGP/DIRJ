@@ -44,8 +44,14 @@ public class Menu extends AppCompatActivity {
         }
     }
     public void cuentaUsuarioView(View view){
-        Intent openCuentadeusuario = new Intent(Menu.this, CuentaUsuario.class);
-        startActivity(openCuentadeusuario);
+        SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        if (preferences.getInt("iduser", 0) == 0){
+            Intent openCuentadeusuario = new Intent(Menu.this, CuentaUsuario.class);
+            startActivity(openCuentadeusuario);
+        }else{
+            Intent openActualizarDatos = new Intent(Menu.this, ActualizarDatos.class);
+            startActivity(openActualizarDatos);
+        }
     }
 
     public void cerrarSesion(View view){
