@@ -118,4 +118,20 @@ public class DataBaseCRUD extends DataBaseSQLite {
 
         return usuario;
     }
+
+    public boolean editarUser(int id, String username, String lastname, String email, String password, String birth){
+        DataBaseSQLite dataBase = new DataBaseSQLite(context);
+        SQLiteDatabase db = dataBase.getWritableDatabase();
+
+        try{
+            db.execSQL("UPDATE " + TABLE_USERS + " SET username = '" + username + "', lastname = '" + lastname + "',email = '" + email + "', password = '" + password + "', birth = '" + birth + "' WHERE iduser = " + id);
+            return true;
+        }catch(Exception e){
+
+            return false;
+        }
+
+    }
+
+
 }

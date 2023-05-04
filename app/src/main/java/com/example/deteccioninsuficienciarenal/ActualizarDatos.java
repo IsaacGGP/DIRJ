@@ -86,5 +86,17 @@ public class ActualizarDatos extends AppCompatActivity {
             datoscorrectos = false;
         }
 
+        SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        DataBaseCRUD database = new DataBaseCRUD(ActualizarDatos.this);
+        if( datoscorrectos){
+            if( database.editarUser(preferences.getInt("iduser", 0), username.getText().toString(), userlastname.getText().toString(), email.getText().toString(), password.getText().toString(), txtdia.getText().toString() + "-" + txtmes.getText().toString() + "-" + txtaño.getText().toString()) ){
+                Toast.makeText(this, "Actualizado correctamente", Toast.LENGTH_SHORT).show();
+                Intent openMain = new Intent(ActualizarDatos.this, Bienvenida.class);
+                startActivity(openMain);
+            }else{
+                Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 }

@@ -12,6 +12,9 @@
         android:theme="@style/Theme.DeteccionInsuficienciaRenal"
         tools:targetApi="31">
         <activity
+            android:name=".VerResultados"
+            android:exported="false" />
+        <activity
             android:name=".ConsultarResultadosSinSesion"
             android:exported="false" />
         <activity
