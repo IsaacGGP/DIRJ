@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/text"
 
-            android:src="@drawable/baseline_monitor_heart_24" />
+            android:src="@drawable/baseline_description_24" />
 
         <TextView
             android:id="@+id/text"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginStart="16dp"
-            android:text="Calculadora de riesgo"
+            android:text="Reporte insuficiencia renal"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

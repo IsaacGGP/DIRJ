@@ -38,7 +38,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
                 "liver_disease INTEGER NOT NULL," +
                 "kidney_disease INTEGER NOT NULL," +
                 "cancer INTEGER NOT NULL," +
-                "created_at INTEGER NOT NULL," +
+                "created_at TEXT NOT NULL," +
                 "weight INTEGER NOT NULL," +
                 "creatinine_level INTEGER NOT NULL," +
                 "obstruction_blood_vesseles INTEGER NOT NULL," +
