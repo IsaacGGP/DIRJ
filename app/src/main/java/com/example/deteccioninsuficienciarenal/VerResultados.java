@@ -8,8 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class VerResultados extends AppCompatActivity {
-    String nombrecompleto, riesgos;
-    int porcentaje;
+    String risk = "";
     Usuario usuario;
     Riesgo riesgo;
     @Override
@@ -39,6 +38,33 @@ public class VerResultados extends AppCompatActivity {
 
         fecha.setText("Resultados insuficiencia renal "+riesgo.getCreatedat());
         porcentaje.setText(riesgo.getPorcentrisk() + "% DE CONTRAER INSUFICIENCIA RENAL");
+
+        if(riesgo.getDiabetes() == 1){
+            risk = risk+"* Diabetes\n";
+        }if(riesgo.getBloodpreasure() == 1){
+            risk = risk+"* Presion arterial alta\n";
+        }if(riesgo.getHeartfailure() == 1){
+            risk = risk+"* Problemas cardiacos\n";
+        }if(riesgo.getLiverdiseasease() == 1){
+            risk = risk + "* Enfermedades del hígado\n";
+        }if(riesgo.getKidneydisease() == 1){
+            risk = risk + "* Enfermedades renales\n";
+        }if(riesgo.getCancer() == 1){
+            risk = risk + "* Tratamiento de cancer \n";
+        }if(riesgo.getOverweight() == 1){
+            risk = risk + "* Sobre peso\n";
+        }if(riesgo.getCreatinine() == 1){
+            risk = risk + "* Nivel alto de creatinina\n";
+        }if(riesgo.getObstruccionbloodv() == 1){
+            risk = risk + "* Obstruccion en vasos sanguineos\n";
+        }if(riesgo.getUrinarysediment() == 1){
+            risk = risk + "* Anormalidad en sedimiento urinario\n";
+        }
+
+        if(risk == ""){
+            risk = "Sin riesgos registrados";
+        }
+        riesgos.setText(risk);
 
     }
 
