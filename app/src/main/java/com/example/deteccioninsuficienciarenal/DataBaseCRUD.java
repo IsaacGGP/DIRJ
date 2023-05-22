@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 
 
 public class DataBaseCRUD extends DataBaseSQLite {
@@ -149,6 +150,41 @@ public class DataBaseCRUD extends DataBaseSQLite {
         cursorRisk.close();
 
         return riesgo;
+    }
+
+    public ArrayList<Riesgo> leerRiesgos(int id){
+       DataBaseSQLite dataBase = new DataBaseSQLite(context);
+       SQLiteDatabase db = dataBase.getWritableDatabase();
+
+       ArrayList<Riesgo> listaRiesgos = new ArrayList<>();
+       Riesgo riesgo = null;
+       Cursor cursorRiesgo = null;
+
+       cursorRiesgo = db.rawQuery("SELECT * FROM risk WHERE iduser = " + id + "", null);
+
+       if(cursorRiesgo.moveToLast()){
+           do{
+               riesgo = new Riesgo();
+               riesgo.setIdresults(cursorRiesgo.getInt(0));
+               riesgo.setPorcentrisk(cursorRiesgo.getInt(1));
+               riesgo.setDiabetes(cursorRiesgo.getInt(2));
+               riesgo.setBloodpreasure(cursorRiesgo.getInt(3));
+               riesgo.setHeartfailure(cursorRiesgo.getInt(4));
+               riesgo.setLiverdiseasease(cursorRiesgo.getInt(5));
+               riesgo.setKidneydisease(cursorRiesgo.getInt(6));
+               riesgo.setCancer(cursorRiesgo.getInt(7));
+               riesgo.setCreatedat(cursorRiesgo.getString(8));
+               riesgo.setOverweight(cursorRiesgo.getInt(9));
+               riesgo.setCreatinine(cursorRiesgo.getInt(10));
+               riesgo.setObstruccionbloodv(cursorRiesgo.getInt(11));
+               riesgo.setUrinarysediment(cursorRiesgo.getInt(12));
+               riesgo.setIduser(cursorRiesgo.getInt(13));
+               listaRiesgos.add(riesgo);
+           } while (cursorRiesgo.moveToPrevious());
+       }
+       cursorRiesgo.close();
+
+       return listaRiesgos;
     }
 
     public boolean editarUser(int id, String username, String lastname, String email, String password, String birth){

@@ -3,8 +3,10 @@ package com.example.deteccioninsuficienciarenal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class VerResultados extends AppCompatActivity {
@@ -13,11 +15,32 @@ public class VerResultados extends AppCompatActivity {
     Riesgo riesgo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_resultados);
 
         SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         preferences.getInt("idrisk", 0);
+
+        if(savedInstanceState == null){
+            Bundle extras = getIntent().getExtras();
+            if(extras == null){
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("idrisk", 0);
+                editor.commit();
+            }else{
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("idrisk", extras.getInt("idrisk"));
+                editor.commit();
+            }
+        }else{
+            int idriesgo;
+            idriesgo = (int) savedInstanceState.getSerializable("idrisk");
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("idrisk", idriesgo);
+            editor.commit();
+
+        }
 
         TextView fecha, nombre, porcentaje, riesgos;
 
@@ -68,7 +91,21 @@ public class VerResultados extends AppCompatActivity {
 
     }
 
-    public void verResultados (){
+    public void menu(View view){
+        Intent openMenu = new Intent(VerResultados.this, Menu.class);
+        startActivity(openMenu);
+    }
+
+    public void inicio(View view){
+        SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        if (preferences.getInt("iduser", 0) != 0){
+            Intent openConsultarResultados = new Intent(VerResultados.this, ConsultarResultados.class);
+            startActivity(openConsultarResultados);
+        } else if (preferences.getInt("iduser", 0) == 0) {
+            Intent openInicio = new Intent(VerResultados.this, Bienvenida.class);
+            startActivity(openInicio);
+        }
 
     }
-}
+
+    }

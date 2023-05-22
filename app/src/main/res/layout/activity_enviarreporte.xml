@@ -12,14 +12,17 @@
 
     <LinearLayout
         android:id="@+id/LinearDescription"
-        android:layout_width="355dp"
-        android:layout_height="334dp"
+        android:layout_width="354dp"
+        android:layout_height="486dp"
+        android:layout_marginStart="33dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="23dp"
         android:background="@drawable/redondeado"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/include3"
-        tools:layout_editor_absoluteX="33dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,61 +87,18 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="vertical">
+            android:text="Considerando los siguientes riesgos:"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/Riesgos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="10dp"
-                android:singleLine="true"
-                android:text="Riesgos:"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/Riesgo1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="10dp"
-                android:singleLine="true"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/Riesgo2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="10dp"
-                android:singleLine="true"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/Riesgo3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="10dp"
-                android:singleLine="true"
-                android:textSize="20sp" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/riesgosenviar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -173,23 +133,24 @@
                 android:singleLine="true"
                 android:text="Fecha: 12/10/2022"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnRegistrar"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="22dp"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="#6B0B11"
-            android:gravity="top|start"
-            android:text="Enviar"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="-470dp"
+        android:backgroundTint="#6B0B11"
+        android:gravity="top|start"
+        android:text="Enviar"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/LinearDescription"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

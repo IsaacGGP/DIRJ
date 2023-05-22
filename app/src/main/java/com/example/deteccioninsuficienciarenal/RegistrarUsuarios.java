@@ -44,8 +44,6 @@ public class RegistrarUsuarios extends AppCompatActivity {
         txtmes = findViewById(R.id.txtMes);
         txtaño = findViewById(R.id.txtAño);
         registrarse = findViewById(R.id.btnRegistrar);
-
-        splista.setInputType(InputType.TYPE_NULL);
     }
 
     public void registrar(View view){

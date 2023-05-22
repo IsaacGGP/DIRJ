@@ -60,7 +60,7 @@ public class CalculadoraRiesgo extends AppCompatActivity {
             //todo: Se registrara todo en la base de datos pero al aceptar todas las tablas con riesgo con el id = 0 se eliminaran (en la pantalla verResultados) (pendiente implementar)
 
             int porcentrisk =0, diabete =0, presionarterial = 0, problemascorazon = 0, enfernedadhepati = 0, enfermedadrenal = 0, cance =0, sobrepeso =0, creatinina =0, obstruccionv =0, sedimientou =0 ;
-            float pes, alt, imc;
+            float pes = 0, alt = 0, imc = 0;
 
             if(diabetes.isChecked()){
                 System.out.println("check");
@@ -115,15 +115,22 @@ public class CalculadoraRiesgo extends AppCompatActivity {
             long exito = database.insertarRisk(porcentrisk, diabete, presionarterial, problemascorazon, enfernedadhepati, enfermedadrenal, cance, created,sobrepeso, creatinina, obstruccionv, sedimientou, preferences.getInt("iduser", 0));
 
             if (exito > 0){
-                Toast.makeText(this, "Informacion guardada correctamente", Toast.LENGTH_SHORT).show();
+                if(preferences.getInt("iduser", 0) != 0){
+                    Toast.makeText(this, "Informacion guardada correctamente", Toast.LENGTH_SHORT).show();
+                } else if (preferences.getInt("iduser", 0) == 0) {
+                    Toast.makeText(this, "informacion NO GUARDADA: Es necesario iniciar sesion para guardar informacion", Toast.LENGTH_SHORT).show();
+                }
+
 
                 int idrisk = (int) exito;
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("idrisk", idrisk);
                 editor.commit();
 
-                Intent openVerResultados = new Intent(CalculadoraRiesgo.this, VerResultados.class);
-                startActivity(openVerResultados);
+                Context context = view.getContext();
+                Intent intent = new Intent(context, VerResultados.class);
+                intent.putExtra("idrisk", preferences.getInt("iduser", 0));
+                context.startActivity(intent);
             }else{
                 Toast.makeText(this, "Error al guardar informacion", Toast.LENGTH_SHORT).show();
             }
