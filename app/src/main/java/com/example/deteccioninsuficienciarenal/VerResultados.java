@@ -16,6 +16,7 @@ public class VerResultados extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_resultados);
 
@@ -25,13 +26,7 @@ public class VerResultados extends AppCompatActivity {
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
             if(extras == null){
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("idrisk", 0);
-                editor.commit();
             }else{
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("idrisk", extras.getInt("idrisk"));
-                editor.commit();
             }
         }else{
             int idriesgo;
@@ -98,6 +93,7 @@ public class VerResultados extends AppCompatActivity {
 
     public void inicio(View view){
         SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+
         if (preferences.getInt("iduser", 0) != 0){
             Intent openConsultarResultados = new Intent(VerResultados.this, ConsultarResultados.class);
             startActivity(openConsultarResultados);

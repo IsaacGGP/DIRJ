@@ -20,6 +20,7 @@ public class CalculadoraRiesgo extends AppCompatActivity {
     EditText peso, creatinina, altura;
     CheckBox sedimientourinario, presionarterialalta, diabetes, obstruccionvaso, insuficienciacardiaca, enfermedadeshepaticas, enfermedadesrenales, cancer;
     DataBaseCRUD database = new DataBaseCRUD(CalculadoraRiesgo.this);
+    Usuario usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,8 @@ public class CalculadoraRiesgo extends AppCompatActivity {
         enfermedadesrenales = findViewById(R.id.enfermedadesrenales);
         cancer = findViewById(R.id.cancer);
 
+        SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        preferences.getInt("iduser", 0);
 
     }
     public void menu(View view){
@@ -59,41 +62,60 @@ public class CalculadoraRiesgo extends AppCompatActivity {
         if(datoscorrectos){
             //todo: Se registrara todo en la base de datos pero al aceptar todas las tablas con riesgo con el id = 0 se eliminaran (en la pantalla verResultados) (pendiente implementar)
 
-            int porcentrisk =0, diabete =0, presionarterial = 0, problemascorazon = 0, enfernedadhepati = 0, enfermedadrenal = 0, cance =0, sobrepeso =0, creatinina =0, obstruccionv =0, sedimientou =0 ;
-            float pes = 0, alt = 0, imc = 0;
+            int porcentrisk =0, diabete =0, presionarterial = 0, problemascorazon = 0, enfernedadhepati = 0, enfermedadrenal = 0, cance =0, sobrepeso =0, creatinin =0, obstruccionv =0, sedimientou =0 ;
+            float pes = 0, alt = 0, imc = 0, porcent;
 
             if(diabetes.isChecked()){
                 System.out.println("check");
                 diabete = 1;
-                porcentrisk += 1;
+                porcentrisk += 40;
             }if (presionarterialalta.isChecked()){
                 System.out.println("check");
                 presionarterial = 1;
-                porcentrisk += 1;
+                porcentrisk += 7;
             }if (insuficienciacardiaca.isChecked()){
                 System.out.println("check");
                 problemascorazon = 1;
-                porcentrisk += 1;
+                porcentrisk += 34;
             }if(enfermedadeshepaticas.isChecked()){
                 System.out.println("check");
                 enfernedadhepati = 1;
-                porcentrisk += 1;
+                porcentrisk += 31;
             }if (enfermedadesrenales.isChecked()){
                 System.out.println("check");
                 enfermedadrenal = 1;
-                porcentrisk += 1;
+                porcentrisk += 5;
             }if (cancer.isChecked()){
                 System.out.println("check");
                 cance =1;
-                porcentrisk += 1;
+                porcentrisk += 23;
             }if (obstruccionvaso.isChecked()){
                 System.out.println("check");
                 obstruccionv = 1;
-                porcentrisk += 1;
+                porcentrisk += 40;
             }if (sedimientourinario.isChecked()){
                 System.out.println("check");
                 sedimientou = 1;
-                porcentrisk += 1;
+                porcentrisk += 20;
+            }if (preferences.getInt("iduser", 0) != 0){
+                System.out.println("Si estamos registrados");
+                usuario = database.buscarUser(preferences.getInt("iduser", 0));
+                float creatin = Integer.valueOf(creatinina.getText().toString());
+                System.out.println(creatin);
+                System.out.println(usuario.getGender());
+                if(usuario.getGender() == 0){ //masculino
+                    if(creatin > 1.3){
+                        creatinin = 1;
+                        porcentrisk += 50;
+                    }
+                } else if (usuario.getGender() == 1) { //femenino
+                    if(creatin > 1.1){
+                        creatinin = 1;
+                        porcentrisk += 50;
+                    }
+                }
+            }else{
+                Toast.makeText(this, "Para considerar el nivel de CREATININA necesita registrarse", Toast.LENGTH_SHORT).show();
             }
 
             pes = Float.valueOf(peso.getText().toString());
@@ -103,7 +125,7 @@ public class CalculadoraRiesgo extends AppCompatActivity {
             if (imc >= 25){
                 System.out.println("check");
                 sobrepeso = 1;
-                porcentrisk += 1;
+                porcentrisk += 6;
             }
 
             long ahora = System.currentTimeMillis();
@@ -112,7 +134,7 @@ public class CalculadoraRiesgo extends AppCompatActivity {
             String created = df.format(fecha);
 
             DataBaseCRUD database = new DataBaseCRUD(CalculadoraRiesgo.this);
-            long exito = database.insertarRisk(porcentrisk, diabete, presionarterial, problemascorazon, enfernedadhepati, enfermedadrenal, cance, created,sobrepeso, creatinina, obstruccionv, sedimientou, preferences.getInt("iduser", 0));
+            long exito = database.insertarRisk(porcentrisk, diabete, presionarterial, problemascorazon, enfernedadhepati, enfermedadrenal, cance, created,sobrepeso, creatinin, obstruccionv, sedimientou, preferences.getInt("iduser", 0));
 
             if (exito > 0){
                 if(preferences.getInt("iduser", 0) != 0){
