@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -55,6 +56,11 @@ public class VerResultados extends AppCompatActivity {
         }
 
         fecha.setText("Resultados insuficiencia renal "+riesgo.getCreatedat());
+        if(riesgo.getPorcentrisk() < 50){
+            porcentaje.setTextColor(getResources().getColor(R.color.green));
+        } else if (riesgo.getPorcentrisk() > 50) {
+            porcentaje.setTextColor(getResources().getColor(R.color.red));
+        }
         porcentaje.setText(riesgo.getPorcentrisk() + "% DE CONTRAER INSUFICIENCIA RENAL");
 
         if(riesgo.getDiabetes() == 1){

@@ -62,8 +62,8 @@ public class CalculadoraRiesgo extends AppCompatActivity {
         if(datoscorrectos){
             //todo: Se registrara todo en la base de datos pero al aceptar todas las tablas con riesgo con el id = 0 se eliminaran (en la pantalla verResultados) (pendiente implementar)
 
-            int porcentrisk =0, diabete =0, presionarterial = 0, problemascorazon = 0, enfernedadhepati = 0, enfermedadrenal = 0, cance =0, sobrepeso =0, creatinin =0, obstruccionv =0, sedimientou =0 ;
-            float pes = 0, alt = 0, imc = 0, porcent;
+            int porcentrisk =0, diabete =0, presionarterial = 0, problemascorazon = 0, enfernedadhepati = 0, enfermedadrenal = 0, cance =0, sobrepeso =0, obstruccionv =0, sedimientou =0, creatinin =0;
+            float pes = 0, alt = 0, imc = 0, porcent = 0;
 
             if(diabetes.isChecked()){
                 System.out.println("check");
@@ -100,7 +100,7 @@ public class CalculadoraRiesgo extends AppCompatActivity {
             }if (preferences.getInt("iduser", 0) != 0){
                 System.out.println("Si estamos registrados");
                 usuario = database.buscarUser(preferences.getInt("iduser", 0));
-                float creatin = Integer.valueOf(creatinina.getText().toString());
+                float creatin = Float.valueOf(creatinina.getText().toString());
                 System.out.println(creatin);
                 System.out.println(usuario.getGender());
                 if(usuario.getGender() == 0){ //masculino
