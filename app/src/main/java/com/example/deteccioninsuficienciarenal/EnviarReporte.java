@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.Settings;
 import android.text.TextPaint;
 import android.view.View;
@@ -34,6 +35,20 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Properties;
+
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
+import javax.mail.Authenticator;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class EnviarReporte extends AppCompatActivity {
 
@@ -43,6 +58,7 @@ public class EnviarReporte extends AppCompatActivity {
     Riesgo riesgo;
     String tituloPDF = "Reporte insuficiencia renal";
     String contenido = "Prueba de pdf";
+    Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +143,7 @@ public class EnviarReporte extends AppCompatActivity {
 
     public void enviar(View view){
         generarPDF();
+        send();
     }
 
     public void  generarPDF(){
@@ -172,12 +189,6 @@ public class EnviarReporte extends AppCompatActivity {
         pdfDocument.close();
     }
 
-    private boolean checkPermission(){
-        int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-        int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
-        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED;
-    }
-
     private void requestPermissions(){
         try{
             Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
@@ -191,18 +202,51 @@ public class EnviarReporte extends AppCompatActivity {
         }
     }
 
-    public void onRequestPermissionResult(int requestCode, @NonNull String[] permission, @NonNull int[] grantResults){
-        if(requestCode == 200){
-            if(grantResults.length > 0){
-                boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+    private void send(){
+        String correo = "deteccion.insuficiencia.renal@gmail.com";
+        String password = "jcebudyinztyxbnj";
 
-                if(writeStorage && readStorage){
-                    Toast.makeText(this, "Permiso aceptado", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
+
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        Properties properties = new Properties();
+        properties.put("mail.smtp.starttls.enable","true");
+        properties.put("mail.smtp.host", "smtp.googlemail.com");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "465");
+
+        try{
+            session = Session.getDefaultInstance(properties, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(correo, password);
                 }
+            });
+            if(session != null){
+
+                BodyPart adjunto = new MimeBodyPart();
+                System.out.println(Environment.getExternalStorageDirectory()+"/ReporteInsuficienciaRenal.pdf");
+                adjunto.setDataHandler(new DataHandler(new FileDataSource(Environment.getExternalStorageDirectory()+"/ReporteInsuficienciaRenal.pdf")));
+                adjunto.setFileName("ReporteInsuficienciaRenal.pdf");
+                MimeMultipart m = new MimeMultipart();
+                m.addBodyPart(adjunto);
+
+
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(correo));
+                message.setSubject("Reporte insuficiencia renal "+ riesgo.getCreatedat());
+                message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(usuario.getEmail()));
+                message.setContent(m);
+
+                Transport.send(message);
             }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
+
     }
 }
