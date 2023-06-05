@@ -57,7 +57,17 @@ public class CalculadoraRiesgo extends AppCompatActivity {
         }if (creatinina.getText().toString().equals("")){
             Toast.makeText(this, "Falta agregar NIVEL DE CREATININA del paciente", Toast.LENGTH_SHORT).show();
             datoscorrectos = false;
+        }if (!alturaCorrecta(altura.getText().toString())){
+            Toast.makeText(this, "Altura invalida", Toast.LENGTH_SHORT).show();
+            datoscorrectos = false;
+        }if (!pesoCorrecto(peso.getText().toString())){
+            Toast.makeText(this, "Peso invalido", Toast.LENGTH_SHORT).show();
+            datoscorrectos = false;
+        }if (!creatininaCorrecto(creatinina.getText().toString())){
+            Toast.makeText(this, "Nivel de creatinina invalido", Toast.LENGTH_SHORT).show();
+            datoscorrectos = false;
         }
+
 
         if(datoscorrectos){
             //todo: Se registrara todo en la base de datos pero al aceptar todas las tablas con riesgo con el id = 0 se eliminaran (en la pantalla verResultados) (pendiente implementar)
@@ -162,4 +172,27 @@ public class CalculadoraRiesgo extends AppCompatActivity {
         }
     }
 
+    public Boolean pesoCorrecto(String pes){
+        Float peso = Float.parseFloat(pes);
+        if(peso > 0 && peso < 650){
+            return true;
+        }else
+            return false;
+    }
+
+    public Boolean creatininaCorrecto(String creatin){
+        Float creatinina = Float.parseFloat(creatin);
+        if(creatinina > 0.0 && creatinina < 4.0){
+            return true;
+        }else
+            return false;
+    }
+
+    public Boolean alturaCorrecta(String alt){
+        Float altura = Float.parseFloat(alt);
+        if(altura > 1.0 && altura < 3.0){
+            return true;
+        }else
+            return false;
+    }
 }

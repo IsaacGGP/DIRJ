@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ActualizarDatos extends AppCompatActivity {
     Usuario usuario;
     EditText username, userlastname, email, password, txtdia, txtmes, txtaño;
@@ -84,6 +88,21 @@ public class ActualizarDatos extends AppCompatActivity {
         }if(password.getText().toString().isEmpty()){
             Toast.makeText(this, "Falta agregar la contraseña", Toast.LENGTH_SHORT).show();
             datoscorrectos = false;
+        }if(!correoCorrecto(email.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Correo invalido", Toast.LENGTH_SHORT).show();
+        }if(!contraseñaCorrecta(password.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Contraseña invalida", Toast.LENGTH_SHORT).show();
+        }if(!nombreApellidoCorrecto(username.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Nombre invalido", Toast.LENGTH_SHORT).show();
+        }if(!nombreApellidoCorrecto(userlastname.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Apellido invalido", Toast.LENGTH_SHORT).show();
+        }if(!fechaCorrecta(txtdia.getText().toString(), txtmes.getText().toString(), txtaño.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Fecha invalida. dd/mm/yy", Toast.LENGTH_SHORT).show();
         }
 
         SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
@@ -97,6 +116,48 @@ public class ActualizarDatos extends AppCompatActivity {
                 Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show();
             }
         }
+    }
 
+    public Boolean correoCorrecto(String correo){
+        if(correo.contains("@") && correo.contains(".") && correo.length()<121){
+                return true;
+        }else{
+            return false;
+        }
+    }
+
+    public Boolean contraseñaCorrecta(String contraseña){
+        if (contraseña.length() < 6 ||  contraseña.length() > 60){
+            return false;
+        }else {
+            return true;
+        }
+
+    }
+
+    public Boolean nombreApellidoCorrecto(String nombre){
+        if(nombre.matches("[A-Za-záéíóú ]*")){
+            if(nombre.length() < 50 && nombre.length() > 2){
+                return true;
+            }else return false;
+        }else  return false;
+    }
+
+    public Boolean fechaCorrecta(String dia, String mes, String año){
+        long ahora = System.currentTimeMillis();
+        Date fecha = new Date(ahora);
+        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        String created = df.format(fecha);
+        String year[] = created.split("/");
+
+        if(dia.length() == 2 && mes.length() == 2 && año.length() == 2){
+            if(Integer.parseInt(dia) > 31 || Integer.parseInt(dia) < 01){
+                return false;
+            }
+            if (Integer.parseInt(mes) > 12 || Integer.parseInt(mes) < 01) {
+                return false;
+            }else return true;
+        } else
+            return false;
     }
 }

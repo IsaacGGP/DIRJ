@@ -30,8 +30,11 @@ import android.os.StrictMode;
 import android.provider.Settings;
 import android.text.TextPaint;
 import android.view.View;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -56,8 +59,9 @@ public class EnviarReporte extends AppCompatActivity {
     String risk="";
     Usuario usuario;
     Riesgo riesgo;
-    String tituloPDF = "Reporte insuficiencia renal";
-    String contenido = "Prueba de pdf";
+    String tituloPDF = "Reporte de insuficiencia renal";
+    String contenido = "";
+    String pietexto = "La aplicación DIR (detección de insuficiencia renal) realiza una estimación que solo es una guía estadística y preventiva, no sustituye \nde ninguna manera las valoraciones médicas hechas por profesionales de la salud ya que la insuficiencia renal tiene muchos factores\n que lo causan y es necesario realizar exámenes de laboratorio para estar seguros sobre los resultados.";
     Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,33 +107,47 @@ public class EnviarReporte extends AppCompatActivity {
         usuario = database.buscarUser(preferences.getInt("iduser", 0));
         riesgo = database.buscarRisk(preferences.getInt("idrisk", 0));
 
-        fullname.setText(usuario.getUsername() + usuario.getLastname());
+        fullname.setText(usuario.getUsername() +" "+ usuario.getLastname());
+        String sexo = "Desconocido";
+        if(usuario.getGender() == 0){
+            sexo = "Masculino";
+        }else if(usuario.getGender() == 1){
+            sexo = "Femenino";
+        }
+        contenido  = "Paciente: " + usuario.getUsername()+ " " + usuario.getLastname() + " "+ " "+" "+ " "+ " "+ " "+" "+ " "+" "+ " "+ " "+ " "+" "+ " "+ " "+ " "+ " "+ " "+"Fecha de nacimiento: "+usuario.getBirth()+" "+ " "+ " "+ " "+" "+ " "+ " "+ " "+" "+ " "+" "+ " "+ " "+ " "+" "+ " "+"Sexo: "+sexo +"\n"+"\n";
         email.setText(usuario.getEmail());
+        contenido = contenido + "Correo electrónico: "+ usuario.getEmail() + " "+ " "+" "+ " "+ " "+ " "+" "+ " "+ " "+ " "+" "+ " "+ " "+ " "+" "+ " "+ " "+ " "+" "+ " "+ " "+ " "+" "+ " "+ " "+ " "+" "+ " "+" "+ " "+ " "+" "+ " "+ " "+ " "+ " "+" "+ " "+" "+ " "+ " "+" "+ " "+ " "+ " "+ " "+" "+ " "+ " "+ "Fecha de cálculo de riesgo: "+riesgo.getCreatedat()+"\n"+"\n"+"\n"+"\n";
+        contenido = contenido + "El porcentaje que tiene el paciente de contraer insuficiencia renal es de "+riesgo.getPorcentrisk()+ "% este es un aproximado y no \nremplaza a una prueba de laboratorio completa, para obtener información más acertada visite a su médico.\n" + "\n"+ "\n"+ "\n" ;
+        contenido = contenido + "Los factores de riesgo considerados son: \n"+"\n";
+
+
 
         if(riesgo.getDiabetes() == 1){
-            risk = risk + "* Diabetes\n";
+            risk = risk + "* Diabetes 40%\n";
         }if(riesgo.getBloodpreasure() == 1){
-            risk = risk+"* Presion arterial alta\n";
+            risk = risk+"* Presion arterial alta 7%\n";
         }if(riesgo.getHeartfailure() == 1){
-            risk = risk+"* Problemas cardiacos\n";
+            risk = risk+"* Problemas cardiacos 34%\n";
         }if(riesgo.getLiverdiseasease() == 1){
-            risk = risk + "* Enfermedades del hígado\n";
+            risk = risk + "* Enfermedades del hígado 31%\n";
         }if(riesgo.getKidneydisease() == 1){
-            risk = risk + "* Enfermedades renales\n";
+            risk = risk + "* Enfermedades renales 5%\n";
         }if(riesgo.getCancer() == 1){
-            risk = risk + "* Tratamiento de cancer \n";
+            risk = risk + "* Tratamiento de cancer 23%\n";
         }if(riesgo.getOverweight() == 1){
-            risk = risk + "* Sobre peso\n";
+            risk = risk + "* Sobre peso 6%\n";
         }if(riesgo.getCreatinine() == 1){
-            risk = risk + "* Nivel alto de creatinina\n";
+            risk = risk + "* Nivel alto de creatinina 50%\n";
         }if(riesgo.getObstruccionbloodv() == 1){
-            risk = risk + "* Obstruccion en vasos sanguineos\n";
+            risk = risk + "* Obstruccion en vasos sanguineos 40%\n";
         }if(riesgo.getUrinarysediment() == 1){
-            risk = risk + "* Anormalidad en sedimiento urinario\n";
+            risk = risk + "* Anormalidad en sedimiento urinario 20%\n";
         }
         if(risk == ""){
-            risk = "Sin riesgos registrados";
+            risk = "* Sin factor de riesgo encontrado";
         }
+
+        contenido = contenido + risk;
 
         risks.setText(risk);
         porcentrisk.setText("Con un riesgo del "+riesgo.getPorcentrisk()+"%");
@@ -144,36 +162,53 @@ public class EnviarReporte extends AppCompatActivity {
     public void enviar(View view){
         generarPDF();
         send();
+        Intent openConsultarResultados = new Intent(EnviarReporte.this, ConsultarResultados.class);
+        startActivity(openConsultarResultados);
+        delete();
     }
 
+
     public void  generarPDF(){
+        Toast.makeText(this, "Enviando reporte. Por favor espere...", Toast.LENGTH_SHORT).show();
         PdfDocument pdfDocument = new PdfDocument();
         Paint paint = new Paint();
         TextPaint titulo = new TextPaint();
         TextPaint descripcion = new TextPaint();
+        TextPaint pie = new TextPaint();
 
         Bitmap bitmap, bitmapEscala;
 
-        PdfDocument.PageInfo paginaInfo = new PdfDocument.PageInfo.Builder(816, 1054, 1).create();
+        PdfDocument.PageInfo paginaInfo = new PdfDocument.PageInfo.Builder(720, 1080, 1).create();
         PdfDocument.Page pagina1 = pdfDocument.startPage(paginaInfo);
 
         Canvas canvas = pagina1.getCanvas();
 
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_playstore);//Imagen del logo
         bitmapEscala = Bitmap.createScaledBitmap(bitmap, 80, 80, false);
-        canvas.drawBitmap(bitmapEscala, 368, 20, paint);
+        canvas.drawBitmap(bitmapEscala, 50, 20, paint);
 
         titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         titulo.setTextSize(18);
-        canvas.drawText(tituloPDF, 10, 150, titulo);
+        canvas.drawText(tituloPDF, 250, 150, titulo);
+
         descripcion.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         descripcion.setTextSize(14);
+
+        pie.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        pie.setTextSize(8);
 
         String[] arrDescription = contenido.split("\n");
         int y = 200;
         for(int i =0; i<arrDescription.length; i++){
-            canvas.drawText(arrDescription[i], 10, y, descripcion);
-            y += 15;
+            canvas.drawText(arrDescription[i], 20, y, descripcion);
+            y += 20;
+        }
+
+        String[] arrPie = pietexto.split("\n");
+        int y2 = 1000;
+        for(int i =0; i<arrPie.length; i++){
+            canvas.drawText(arrPie[i], 100, y2, pie);
+            y2 += 15;
         }
 
         pdfDocument.finishPage(pagina1);
@@ -181,11 +216,12 @@ public class EnviarReporte extends AppCompatActivity {
         File file = new File(Environment.getExternalStorageDirectory(), "ReporteInsuficienciaRenal.pdf");
         try{
             pdfDocument.writeTo(new FileOutputStream(file));
-            Toast.makeText(this, "Creado pdf", Toast.LENGTH_SHORT).show();
         }catch (Exception e){
-            Toast.makeText(this, "Error no se ha Creado pdf", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+
+
+
         pdfDocument.close();
     }
 
@@ -242,11 +278,18 @@ public class EnviarReporte extends AppCompatActivity {
                 message.setContent(m);
 
                 Transport.send(message);
+                Toast.makeText(this, "Reporte enviado correctamente", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
             e.printStackTrace();
+            Toast.makeText(this, "Error al enviar reporte", Toast.LENGTH_SHORT).show();
         }
 
 
     }
+    public void delete(){
+        File file = new File(Environment.getExternalStorageDirectory(), "ReporteInsuficienciaRenal.pdf");
+        file.delete();
+    }
+
 }

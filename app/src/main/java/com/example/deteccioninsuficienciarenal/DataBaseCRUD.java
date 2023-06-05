@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.BoringLayout;
+
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -195,10 +197,34 @@ public class DataBaseCRUD extends DataBaseSQLite {
             db.execSQL("UPDATE " + TABLE_USERS + " SET username = '" + username + "', lastname = '" + lastname + "',email = '" + email + "', password = '" + password + "', birth = '" + birth + "' WHERE iduser = " + id);
             return true;
         }catch(Exception e){
-
             return false;
         }
+    }
 
+    public Usuario buscarEmail(String email){
+        int id = 0;
+        DataBaseSQLite dataBase = new DataBaseSQLite(context);
+        SQLiteDatabase db = dataBase.getWritableDatabase();
+
+        Usuario usuario = null;
+        Cursor cursorUser;
+        cursorUser = db.rawQuery("SELECT * FROM users WHERE email = '" + email + "' LIMIT 1", null);
+
+        if (cursorUser.moveToFirst()){
+            usuario = new Usuario();
+            usuario.setIduser(cursorUser.getInt(0));
+            usuario.setUsername(cursorUser.getString(1));
+            usuario.setLastname(cursorUser.getString(2));
+            usuario.setEmail(cursorUser.getString(3));
+            usuario.setPassword(cursorUser.getString(4));
+            usuario.setCreated_at(cursorUser.getString(5));
+            usuario.setBirth(cursorUser.getString(6));
+            usuario.setGender(cursorUser.getInt(7));
+        }
+
+        cursorUser.close();
+
+        return usuario;
     }
 
 

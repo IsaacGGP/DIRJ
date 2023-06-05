@@ -63,25 +63,25 @@ public class VerResultados extends AppCompatActivity {
         porcentaje.setText(riesgo.getPorcentrisk() + "% DE CONTRAER INSUFICIENCIA RENAL");
 
         if(riesgo.getDiabetes() == 1){
-            risk = risk+"* Diabetes\n";
+            risk = risk+"* Diabetes 40%\n";
         }if(riesgo.getBloodpreasure() == 1){
-            risk = risk+"* Presion arterial alta\n";
+            risk = risk+"* Presion arterial alta 7%\n";
         }if(riesgo.getHeartfailure() == 1){
-            risk = risk+"* Problemas cardiacos\n";
+            risk = risk+"* Problemas cardiacos 34%\n";
         }if(riesgo.getLiverdiseasease() == 1){
-            risk = risk + "* Enfermedades del hígado\n";
+            risk = risk + "* Enfermedades del hígado 31%\n";
         }if(riesgo.getKidneydisease() == 1){
-            risk = risk + "* Enfermedades renales\n";
+            risk = risk + "* Enfermedades renales 5%\n";
         }if(riesgo.getCancer() == 1){
-            risk = risk + "* Tratamiento de cancer \n";
+            risk = risk + "* Tratamiento de cancer 23%\n";
         }if(riesgo.getOverweight() == 1){
-            risk = risk + "* Sobre peso\n";
+            risk = risk + "* Sobre peso 6%\n";
         }if(riesgo.getCreatinine() == 1){
-            risk = risk + "* Nivel alto de creatinina\n";
+            risk = risk + "* Nivel alto de creatinina 50%\n";
         }if(riesgo.getObstruccionbloodv() == 1){
-            risk = risk + "* Obstruccion en vasos sanguineos\n";
+            risk = risk + "* Obstruccion en vasos sanguineos 40%\n";
         }if(riesgo.getUrinarysediment() == 1){
-            risk = risk + "* Anormalidad en sedimiento urinario\n";
+            risk = risk + "* Anormalidad en sedimiento urinario 20%\n";
         }
 
         if(risk == ""){

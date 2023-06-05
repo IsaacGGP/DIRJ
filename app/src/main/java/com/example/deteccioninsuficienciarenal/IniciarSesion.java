@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class IniciarSesion extends AppCompatActivity {
     EditText correo, contraseña;
     Boolean datosCorrectos;
+    Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,20 @@ public class IniciarSesion extends AppCompatActivity {
         datosCorrectos = true;
         System.out.println(correo.getText().toString());
         System.out.println(contraseña.getText().toString());
-        Usuario usuario;
         if(correo.getText().toString().isEmpty()){
             Toast.makeText(this, "Falta agregar CORREO ELECTRONICO", Toast.LENGTH_SHORT).show();
             datosCorrectos = false;
+            System.out.println("agregar");
         }if(contraseña.getText().toString().isEmpty()){
             Toast.makeText(this, "Falta agregar CONTRASEÑA", Toast.LENGTH_SHORT).show();
             datosCorrectos = false;
+            System.out.println("contra");
+        }if(!correoCorrecto(correo.getText().toString())){
+            datosCorrectos = false;
+            Toast.makeText(this, "Correo invalido", Toast.LENGTH_SHORT).show();
+        }if(!contraseñaCorrecta(contraseña.getText().toString())){
+            datosCorrectos = false;
+            Toast.makeText(this, "Contraseña invalida", Toast.LENGTH_SHORT).show();
         }
 
         if (datosCorrectos){
@@ -62,5 +70,22 @@ public class IniciarSesion extends AppCompatActivity {
                 Toast.makeText(this, "Error al iniciar sesion", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public Boolean correoCorrecto(String correo){
+        if(correo.contains("@") && correo.contains(".") && correo.length()<121){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public Boolean contraseñaCorrecta(String contraseña){
+        if (contraseña.length() < 6 ||  contraseña.length() > 60){
+            return false;
+        }else {
+            return true;
+        }
+
     }
 }

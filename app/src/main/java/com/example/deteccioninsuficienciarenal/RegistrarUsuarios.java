@@ -3,7 +3,9 @@ package com.example.deteccioninsuficienciarenal;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -82,18 +84,22 @@ public class RegistrarUsuarios extends AppCompatActivity {
             sexo = 1;//1 es femenino}
         }if (sexo == 3){
             datoscorrectos = false;
+        }if(!correoCorrecto(email.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Correo invalido", Toast.LENGTH_SHORT).show();
+        }if(!contraseñaCorrecta(password.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Contraseña invalida", Toast.LENGTH_SHORT).show();
+        }if(!nombreApellidoCorrecto(username.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Nombre invalido", Toast.LENGTH_SHORT).show();
+        }if(!nombreApellidoCorrecto(lastname.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Apellido invalido", Toast.LENGTH_SHORT).show();
+        }if(!fechaCorrecta(txtdia.getText().toString(), txtmes.getText().toString(), txtaño.getText().toString())){
+            datoscorrectos = false;
+            Toast.makeText(this, "Fecha invalida. dd/mm/yy", Toast.LENGTH_SHORT).show();
         }
-
-
-        System.out.println(username.getText().toString());
-        System.out.println(lastname.getText().toString());
-        System.out.println(email.getText().toString());
-        System.out.println(password.getText().toString());
-        System.out.println(password2.getText().toString());
-        System.out.println(txtdia.getText().toString());
-        System.out.println(txtmes.getText().toString());
-        System.out.println(txtaño.getText().toString());
-        System.out.println(splista.getText().toString());
 
         long ahora = System.currentTimeMillis();
         Date fecha = new Date(ahora);
@@ -118,5 +124,57 @@ public class RegistrarUsuarios extends AppCompatActivity {
     public void menu(View view){
         Intent openMenu = new Intent(RegistrarUsuarios.this, Menu.class);
         startActivity(openMenu);
+    }
+
+    public Boolean correoCorrecto(String correo){
+        if(correo.contains("@") && correo.contains(".") && correo.length()<121){
+            DataBaseCRUD DataBaseCRUD = new DataBaseCRUD(RegistrarUsuarios.this);
+            //Correo repetido
+            Usuario usuario;
+            DataBaseCRUD database = new DataBaseCRUD(RegistrarUsuarios.this);
+            usuario = database.buscarEmail(email.getText().toString());
+            if (usuario != null){
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public Boolean contraseñaCorrecta(String contraseña){
+        if (contraseña.length() < 6 ||  contraseña.length() > 60){
+            return false;
+        }else {
+            return true;
+        }
+
+    }
+
+    public Boolean nombreApellidoCorrecto(String nombre){
+        if(nombre.matches("[A-Za-záéíóú ]*")){
+            if(nombre.length() < 50 && nombre.length() > 2){
+                return true;
+            }else return false;
+        }else  return false;
+    }
+
+    public Boolean fechaCorrecta(String dia, String mes, String año){
+        long ahora = System.currentTimeMillis();
+        Date fecha = new Date(ahora);
+        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        String created = df.format(fecha);
+        String year[] = created.split("/");
+
+        if(dia.length() == 2 && mes.length() == 2 && año.length() == 2){
+            if(Integer.parseInt(dia) > 31 || Integer.parseInt(dia) < 01){
+                return false;
+            }
+            if (Integer.parseInt(mes) > 12 || Integer.parseInt(mes) < 01) {
+                return false;
+            }else return true;
+        } else
+            return false;
     }
 }
