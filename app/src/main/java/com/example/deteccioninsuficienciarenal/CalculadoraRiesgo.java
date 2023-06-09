@@ -51,24 +51,31 @@ public class CalculadoraRiesgo extends AppCompatActivity {
     public void calcularButton(View view){
         SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         boolean datoscorrectos = true;
-        if (peso.getText().toString().equals("")){
+        if (peso.getText().toString().equals("") || peso.getText().toString().isEmpty()){
             Toast.makeText(this, "Falta agregar PESO del paciente", Toast.LENGTH_SHORT).show();
             datoscorrectos = false;
-        }if (creatinina.getText().toString().equals("")){
+        }if (creatinina.getText().toString().equals("") || peso.getText().toString().isEmpty()){
             Toast.makeText(this, "Falta agregar NIVEL DE CREATININA del paciente", Toast.LENGTH_SHORT).show();
             datoscorrectos = false;
-        }if (!alturaCorrecta(altura.getText().toString())){
-            Toast.makeText(this, "Altura invalida", Toast.LENGTH_SHORT).show();
-            datoscorrectos = false;
-        }if (!pesoCorrecto(peso.getText().toString())){
-            Toast.makeText(this, "Peso invalido", Toast.LENGTH_SHORT).show();
-            datoscorrectos = false;
-        }if (!creatininaCorrecto(creatinina.getText().toString())){
-            Toast.makeText(this, "Nivel de creatinina invalido", Toast.LENGTH_SHORT).show();
+        }if (peso.getText().toString().equals("") || peso.getText().toString().isEmpty()){
+            Toast.makeText(this, "Falta agregar ALTURA del paciente", Toast.LENGTH_SHORT).show();
             datoscorrectos = false;
         }
 
+        if(datoscorrectos){
+            if (!alturaCorrecta(altura.getText().toString() )){
+                Toast.makeText(this, "Altura invalida", Toast.LENGTH_SHORT).show();
+                datoscorrectos = false;
+            }if (!pesoCorrecto(peso.getText().toString())){
+                Toast.makeText(this, "Peso invalido", Toast.LENGTH_SHORT).show();
+                datoscorrectos = false;
+            }if (!creatininaCorrecto(creatinina.getText().toString())){
+                Toast.makeText(this, "Nivel de creatinina invalido", Toast.LENGTH_SHORT).show();
+                datoscorrectos = false;
+            }
+        }
 
+        System.out.println("si jalan bien??' "+datoscorrectos);
         if(datoscorrectos){
             //todo: Se registrara todo en la base de datos pero al aceptar todas las tablas con riesgo con el id = 0 se eliminaran (en la pantalla verResultados) (pendiente implementar)
 
