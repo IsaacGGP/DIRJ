@@ -61,7 +61,7 @@ public class EnviarReporte extends AppCompatActivity {
     Riesgo riesgo;
     String tituloPDF = "Reporte de insuficiencia renal";
     String contenido = "";
-    String pietexto = "La aplicación DIR (detección de insuficiencia renal) realiza una estimación que solo es una guía estadística y preventiva, no sustituye \nde ninguna manera las valoraciones médicas hechas por profesionales de la salud ya que la insuficiencia renal tiene muchos factores\n que lo causan y es necesario realizar exámenes de laboratorio para estar seguros sobre los resultados.";
+    String pietexto = "La aplicación DIR (detección de insuficiencia renal) realiza una estimación que solo es una guía estadística y preventiva, no sustituye \nde ninguna manera las valoraciones médicas hechas por profesionales de la salud ya que la insuficiencia renal tiene muchos factores\n que lo causan y es necesario realizar exámenes de laboratorio para estar seguros sobre los resultados.\n  Este resultado no es un diagnóstico médico,  sin embargo se recomienda consultar a su médico familiar o a un especialista nefrólogo.";
     Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
